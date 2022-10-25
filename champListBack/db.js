@@ -1,3 +1,11 @@
+/*
+ * Filename: /Users/alex/Developer/5610-p2/champListBack/db.js
+ * Path: /Users/alex/Developer/5610-p2/champListBack
+ * Created Date: Monday, October 20th 2022, 8:30:19 pm
+ * Author: Tianchang WANG
+ * 
+ */
+
 const { query } = require("express");
 const { MongoClient, ObjectId } = require("mongodb");
 var ObjectID = require('mongodb').ObjectID;
