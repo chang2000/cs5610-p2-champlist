@@ -13,7 +13,8 @@ var ObjectID = require('mongodb').ObjectID;
 
 function db() {
   const mydb = {};
-  const mongoString = "mongodb+srv://Cluster46167:fFJeYkdkW29V@cluster46167.93lhnod.mongodb.net/?retryWrites=true&w=majority";
+  const mongoString = "mongodb://localhost:27017";
+
   const url = process.env.MONGO_URL || mongoString;
   const DB_NAME = "champlist";
 
