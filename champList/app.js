@@ -1,22 +1,24 @@
 import express from "express";
+import bodyParser from "body-parser";
+import router, {PORT} from "./routes/routes.js"
 
-
-
-// const express = require('express')
 const app = express()
+// export const PORT = process.env.PORT || 3000;
 
 
-export const PORT = process.env.PORT || 3000;
+app.use(bodyParser.json());
+app.use(
+    bodyParser.urlencoded({
+        extended: true,
+    })
+)
 
-app.get("/", (req, res) => {
-    res.send("hello");
-});
+app.use(router);
 
-app.get("/users", (req, res) => {
-    res.send("users hello");
-});
+app.use(express.static('frontend'))
 
-app.use(express.static('public'))
+
+
 
 app.listen(PORT, () => {
     console.log(`Listening for connections on port ${PORT}`);
