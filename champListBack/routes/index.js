@@ -6,8 +6,9 @@
  * 
  */
 
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
+const passport = require("passport-http-bearer")
 
 const db = require("../db.js");
 
@@ -57,6 +58,7 @@ router.get('/item/create', async (req, res) => {
     record.email = email
     record.completed = false
     record.createTime = Date()
+    record.deleted = false
     const dbRes = await db.createItem(record);
     res.send({
       val: 1,
@@ -91,8 +93,9 @@ router.get('/item/retrieve', async (req, res) => {
 
   try {
     console.log("db", db);
-    const items = await db.getItemList(email)
+    let items = await db.getItemList(email)
     res.send({ items: items });
+    // res.send({ items: items.filter((item) => { item.deleted == true }) });
   } catch (e) {
     console.log("Error", e);
     res.status(400).send({ err: e });

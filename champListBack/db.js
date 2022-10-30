@@ -8,14 +8,14 @@
 
 const { query } = require("express");
 const { MongoClient, ObjectId } = require("mongodb");
-var ObjectID = require('mongodb').ObjectID;
 
 
 function db() {
   const mydb = {};
-  const mongoString = "mongodb://localhost:27017";
+  const mongoString = "mongodb://127.0.0.1:27017";
 
   const url = process.env.MONGO_URL || mongoString;
+  console.log(url)
   const DB_NAME = "champlist";
 
   mydb.createUser = async (user) => {
@@ -121,8 +121,7 @@ function db() {
       await client.connect();
       const db = client.db(DB_NAME);
       const itemCol = db.collection("item");
-      const items = await itemCol.findOneAndUpdate({ _id: ObjectId(`${query.id}`) }, { $set: { completed: `${query.completed}` } })
-      console.log("res", items);
+      let items = await itemCol.findOneAndUpdate({ _id: ObjectId(`${query.id}`) }, { $set: { completed: `${query.completed}` } })
       return items;
 
     } catch {
@@ -131,23 +130,24 @@ function db() {
     }
   };
 
-  // TODO
-  // mydb.deleteItem = async (id) => {
-  //   let client;
-  //   try {
-  //     client = new MongoClient(url, { useUnifiedTopology: true });
-  //     await client.connect();
-  //     const db = client.db(DB_NAME);
-  //     const itemCol = db.collection("item");
-  //     const items = await itemCol.findOneAndUpdate({ _id: ObjectId(`${id}`) }, $set: { deleted: true })
-  //     console.log("res", items);
-  //     return items;
 
-  //   } catch {
-  //     console.log("DB Failed, Closing the connection");
-  //     client.close();
-  //   }
-  // };
+  // Logical delete
+  mydb.deleteItem = async (id) => {
+    let client;
+    try {
+      client = new MongoClient(url, { useUnifiedTopology: true });
+      await client.connect();
+      const db = client.db(DB_NAME);
+      const itemCol = db.collection("item");
+      const items = await itemCol.findOneAndUpdate({ _id: ObjectId(`${id}`) }, { $set: { deleted: true } })
+      console.log("res", items);
+      return items;
+
+    } catch {
+      console.log("DB Failed, Closing the connection");
+      client.close();
+    }
+  };
 
   return mydb;
 }
