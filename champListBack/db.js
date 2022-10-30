@@ -130,6 +130,21 @@ function db() {
     }
   };
 
+  mydb.updateItemComment = async (query) => {
+    let client;
+    try {
+      client = new MongoClient(url, { useUnifiedTopology: true });
+      await client.connect();
+      const db = client.db(DB_NAME);
+      const itemCol = db.collection("item");
+      let items = await itemCol.findOneAndUpdate({ _id: ObjectId(`${query.id}`) }, { $set: { comment: `${query.newComment}` } })
+      return items;
+
+    } catch {
+      console.log("Failed, Closing the connection");
+      client.close();
+    }
+  };
 
   // Logical delete
   mydb.deleteItem = async (id) => {
