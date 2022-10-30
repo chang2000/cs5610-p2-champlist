@@ -6,8 +6,9 @@
  * 
  */
 
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
+// const passport = require("passport-http-bearer")
 
 const db = require("../db.js");
 
@@ -47,17 +48,17 @@ router.get('/user/login', async (req, res) => {
 })
 
 router.get('/item/create', async (req, res) => {
-  let title = req.body.title
-  let type = req.body.type
-  let email = req.body.email
+
   try {
     let record = {}
-    record.title = title
-    record.type = type
-    record.email = email
+    record.title = req.body.title
+    record.type = req.body.type
+    record.email = req.body.email
     record.completed = false
     record.createTime = Date()
-    const dbRes = await db.createItem(record);
+    record.deleted = false
+    record.comment = req.body.comment
+    await db.createItem(record);
     res.send({
       val: 1,
       comment: "create item success"
@@ -75,7 +76,25 @@ router.get('/item/update', async (req, res) => {
   query.completed = req.body.completed
   console.log(query)
   try {
-    const dbRes = await db.updateItemCompletion(query);
+    await db.updateItemCompletion(query);
+    res.send({
+      val: 1,
+      comment: "update success"
+    })
+  } catch (e) {
+    console.log("Error", e);
+    res.status(400).send({ err: e });
+  }
+})
+
+// this api only changes the comment of an item
+router.get('/item/updateComment', async (req, res) => {
+  let query = {}
+  query.id = req.body._id
+  query.newComment = req.body.newComment
+  console.log(query)
+  try {
+    await db.updateItemComment(query);
     res.send({
       val: 1,
       comment: "update success"
@@ -91,8 +110,9 @@ router.get('/item/retrieve', async (req, res) => {
 
   try {
     console.log("db", db);
-    const items = await db.getItemList(email)
+    let items = await db.getItemList(email)
     res.send({ items: items });
+    // res.send({ items: items.filter((item) => { item.deleted == true }) });
   } catch (e) {
     console.log("Error", e);
     res.status(400).send({ err: e });
