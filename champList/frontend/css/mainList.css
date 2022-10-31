@@ -1,0 +1,44 @@
+.container, .list-grid {
+  /* max-width: 350px;
+    min-height: 500px;
+    margin: 80px auto; */
+  /* padding: 40px 30px 30px 30px; */
+  background-color: #ecf0f3;
+  border-radius: 15px;
+  box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+}
+
+
+.list-grid {
+  /* min-height: 100%; */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.list-grid > div {
+  display: flex;
+  flex-basis: calc(50% - 40px);
+  justify-content: center;
+  flex-direction: column;
+}
+.list-grid > div > div {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.box {
+  margin: 20px;
+}
+.box1 {
+    background-color: blue;
+  }
+.box2 {
+  background-color: orange;
+}
+.box3 {
+  background-color: purple;
+}
+.box4 {
+  background-color: grey;
+}
