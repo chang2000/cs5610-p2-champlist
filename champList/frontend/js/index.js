@@ -1,3 +1,4 @@
+
 let todoItem = document.getElementById("newTask");
 let list1 = document.getElementById("todoList1");
 
@@ -10,7 +11,6 @@ async function addTodoList() {
     list1.innerHTML += ` <li class="col px-1 mx-0 d-flex align-items-center" id="list1Item${itemCount}">
                             <div class="col px-1 m-2 d-flex align-items-center">
                             <input class="" type="checkbox" id="list1Check${itemCount}" onclick="done(${itemCount})">
-                                
                                 <div class="col-6">
                                     <span class="form-control form-control-lg border-0  bg-transparent  px-3 " id="list1Text${itemCount}"> ${inputText} </span>
                                 </div>
@@ -27,20 +27,19 @@ async function addTodoList() {
     todoItem.value = " ";
     itemCount++;
 
-    const res = await fetch("/getuser");
-
-  
-    const user = await res.json();
-
-    const spanIsAuth = document.querySelector("span#isAuth");
-
-    if (user.user) {
-      spanIsAuth.innerHTML = " Authenticated!";
-    } else {
-      spanIsAuth.innerHTML = " 😭 ";
-    }
-
-    return user.user !== undefined;
+    //   const res = await fetch("/getuser");
+    axios.get("http://134.209.68.221:5000/item/create", {
+        params: {
+            title: inputText,
+            type: 0, // 0, 1, 2, 3
+            email: "sungrqin@gmail.com"
+        }
+    })
+    .then(res=>{
+        console.log(res.data.title)
+    })
+    
+    
   }
 }
 

@@ -31,8 +31,9 @@
   margin: 20px;
 }
 .box1 {
-    background-color: blue;
-  }
+  overflow: scroll;
+  background-color: blue;
+}
 .box2 {
   background-color: orange;
 }

@@ -7,7 +7,7 @@ const router = express.Router()
 router.post("/login", (req, res) => {
     console.log("POST login", req.body);
     const {userName, password} = req.body;
-    console.log("login", userName, password);
+    console.log("login name and password get: ", userName, password);
 });
 
 router.get("/users", (req, res) => {

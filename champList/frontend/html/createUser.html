@@ -19,14 +19,15 @@
         <a href="../index.html">&lt; back</a>
       </div>
       <div class="text-center mt-4 name">Create New User</div>
-      <form class="p-3 mt-3">
+      <!-- <form action="http://134.209.68.221:5000/user/signup" method="post" class="p-3 mt-3"></form> -->
+      <form action="http://134.209.68.221:5000/user/signup" method="post" class="p-3 mt-3">
         <div class="form-field d-flex align-items-center">
           <span class="far fa-user"></span>
           <input
             type="text"
-            name="userName"
-            id="userName"
-            placeholder="Username"
+            name="email"
+            id="email"
+            placeholder="Email"
             required="true"
           />
         </div>
@@ -35,7 +36,7 @@
           <input
             type="password"
             name="password"
-            id="pwd"
+            id="password"
             placeholder="Password"
             required="true"
           />

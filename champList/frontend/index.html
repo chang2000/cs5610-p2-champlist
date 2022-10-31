@@ -24,14 +24,16 @@
         <img src="./src/img/icon.png" alt="" />
       </div>
       <div class="text-center mt-4 name">ChampList</div>
-      <form action="/login" method="post" class="p-3 mt-3">
+      <!-- Login Form here -->
+      <form action="/login" class="p-3 mt-3"></form>
+      <!-- <form action="http://134.209.68.221:5000/user/login" method="post" class="p-3 mt-3"> -->
         <div class="form-field d-flex align-items-center">
           <span class="far fa-user"></span>
           <input
             type="text"
-            name="userName"
-            id="userName"
-            placeholder="Username"
+            name="email"
+            id="email"
+            placeholder="Email"
             required="true"
           />
         </div>
@@ -40,7 +42,7 @@
           <input
             type="password"
             name="password"
-            id="pwd"
+            id="password"
             placeholder="Password"
             required="true"
           />
@@ -58,5 +60,7 @@
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
       crossorigin="anonymous"
     ></script>
+
+    <!-- <script src="./js/index.js"></script> -->
   </body>
 </html>
