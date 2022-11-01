@@ -1,5 +1,5 @@
 <!--
-
+  
 Author: Guoqin Sun
 
 -->
@@ -9,49 +9,53 @@ Author: Guoqin Sun
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Create New user</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="./css/login.css" />
-    <link href="assets/img/icon.png" rel="icon"/>
+    <link rel="stylesheet" href="../css/login.css" />
   </head>
   <body>
-    <div class="text-center mt-4 name" id="title">
-      <h2>Welcome to the ChampList!</h2>
-    </div>
-    <!--Alert-->
     <div class="wrapper">
-      <div
-      class="alert alert-danger alert-dismissible fade show "
-      role="alert"
-      id="messages"
-      style="display: none;"
-    >
-      <span id="content">Wrong email or password</span>
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="alert"
-        aria-label="Close"
-      ></button>
-    </div>
-      <div class="logo">
-        <img src="./assets/img/icon.png" alt="" />
+      <div class="text">
+        <a href="../">&lt; back</a>
       </div>
-      <div class="text-center mt-4 name">ChampList</div>
-      <!--Login Form here-->
-      <form action="javascript:;" onsubmit="login(this)" method="post" class="p-3 mt-3">
+
+      <!--Alert-->
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        role="alert"
+        id="createUserMsg"
+        style="display: none"
+      >
+        <span id="contentUser">User already exists</span>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="text-center mt-4 name">Create New User</div>
+      <!-- Login Form here -->
+      <!-- <form action="/createUser" method="POST" class="p-3 mt-3"> -->
+      <form
+        action="javascript:;"
+        onsubmit="createUser(this)"
+        method="post"
+        class="p-3 mt-3"
+      >
         <div class="form-field d-flex align-items-center">
           <span class="far fa-user"></span>
           <input
             type="text"
             name="email"
             id="email"
-            placeholder="Username"
+            placeholder="Email"
             required="true"
           />
         </div>
@@ -65,12 +69,8 @@ Author: Guoqin Sun
             required="true"
           />
         </div>
-        <button class="btn mt-3">Login</button>
+        <button class="btn mt-3">Create new account</button>
       </form>
-      <div class="text-center fs-6">
-        <a href="./html/todolist1.html">Forget password?</a> or
-        <a href="./html/createUser.html">Sign up</a>
-      </div>
     </div>
 
     <script
@@ -78,7 +78,8 @@ Author: Guoqin Sun
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
       crossorigin="anonymous"
     ></script>
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="./js/client.js"></script>
+    <script src="../js/client.js"></script>
   </body>
 </html>
