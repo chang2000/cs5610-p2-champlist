@@ -3,9 +3,8 @@
  * Author: Guoqin Sun
  *
  */
-
-
-
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 const login = () => {
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
@@ -33,7 +32,6 @@ const login = () => {
       }
     })
     .catch((e) => {
-      
       console.log(e);
     });
 };
@@ -41,8 +39,6 @@ const login = () => {
 const createUser = (e) => {
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
-
-  
 
   console.log(email, password);
 
@@ -55,19 +51,18 @@ const createUser = (e) => {
       console.log(res.data);
       let loginVal = res.data.val;
       if (loginVal == 1) {
-          console.log('created success')
-          window.location.replace("../");
-          
-          window.localStorage.setItem('newly-created', true)
-          let ele = document.getElementById("newUserMsg")
-          console.log(ele)
-          document.getElementById("newUserMsg").style.display = "block";
-          //alert: user already registered
-          
+        console.log("created success");
+        window.location.replace("../");
+
+        window.localStorage.setItem("newly-created", true);
+        let ele = document.getElementById("newUserMsg");
+        console.log(ele);
+        document.getElementById("newUserMsg").style.display = "block";
+        //alert: user already registered
       } else {
-          console.log('created failed')
-          document.getElementById("createUserMsg").style.display = "block";
-          console.log(res.data.err)
+        console.log("created failed");
+        document.getElementById("createUserMsg").style.display = "block";
+        console.log(res.data.err);
       }
     })
     .catch((e) => {
@@ -77,15 +72,14 @@ const createUser = (e) => {
 
 const displayInfomation = () => {
   // 1. get storage value
-  let ifNewUser = window.localStorage.getItem('newly-created')
+  let ifNewUser = window.localStorage.getItem("newly-created");
   if (ifNewUser) {
-    let ele = document.getElementById("newUserMsg")
+    let ele = document.getElementById("newUserMsg");
     if (ele) {
       document.getElementById("newUserMsg").style.display = "block";
     }
-    window.localStorage.removeItem('newly-created')
-
+    window.localStorage.removeItem("newly-created");
   }
-}
+};
 
-displayInfomation()
+displayInfomation();

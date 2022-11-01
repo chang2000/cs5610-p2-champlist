@@ -15,7 +15,8 @@ listArray.push(list1);
 listArray.push(list2);
 listArray.push(list3);
 listArray.push(list4);
-
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 let itemCount = 0;
 const apiUrl = "http://134.209.68.221:5000";
 let email = window.localStorage.getItem("email");
@@ -122,7 +123,7 @@ async function editList(listId) {
 }
 
 const deleteItem = async (itemId) => {
-  let deleteComfirm = confirm(`Are you sure to delete`);
+  let deleteComfirm = confirm("Are you sure to delete");
   if (deleteComfirm) {
     axios
       .get(`http://134.209.68.221:5000/item/delete?id=${itemId}`)
@@ -134,12 +135,11 @@ const deleteItem = async (itemId) => {
 };
 
 function logOut() {
-  let logoutComfirm = confirm(`Do you want to log out?`);
+  let logoutComfirm = confirm("Do you want to log out?");
   if (logoutComfirm) {
     window.localStorage.removeItem("email");
-    window.location.replace("../")
+    window.location.replace("../");
   }
-  
 }
 
 getItemList();
