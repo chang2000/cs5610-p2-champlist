@@ -23,7 +23,11 @@ let email = window.localStorage.getItem("email");
 
 const getItemList = async () => {
   let ifChecked = "";
-  console.log(email);
+  console.log("email", email);
+  let curEmail = document.getElementById("curAccount");
+  curEmail.innerText = email;
+  console.log("current email:", curEmail.innerText);
+
   axios
     .get(`http://134.209.68.221:5000/item/retrieve?email=${email}`)
     .then((res) => {
