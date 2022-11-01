@@ -65,6 +65,7 @@ router.post('/item/create', async (req, res) => {
     record.createTime = Date()
     record.deleted = false
     const dbRes = await db.createItem(record);
+    console.log(dbRes)
     res.send({
       val: 1,
       comment: "create item success"
