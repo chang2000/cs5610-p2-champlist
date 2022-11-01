@@ -107,7 +107,7 @@ async function done(itemId, ifChecked) {
 
 async function editList(listId) {
   let currentText = document.getElementById(listId);
-  let newText = prompt("Wanna Change list?", currentText.innerText);
+  let newText = prompt("Wanna Change list?");
 
   currentText.innerText = newText;
 
