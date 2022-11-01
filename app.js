@@ -9,26 +9,20 @@
 const express = require('express')
 var bodyParser = require('body-parser')
 var cors = require('cors')
-
 const app = express()
 const port = 5000
-
-const db = require("./db.js")
-app.use(bodyParser.urlencoded({ extended: false }))
-
+// frontend hosting
+app.use(bodyParser.urlencoded({ extended: true }))
 // parse application/json
 app.use(bodyParser.json())
 
 app.use(cors())
 var indexRouter = require("./routes/index");
-// app.get('/', (req, res) => {
-//   res.send('Hello World!')
-// })
-
 app.use("/", indexRouter);
 
+app.use(express.static('public'));
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`App listening on port ${port}`)
 })
 
 module.exports = app;
