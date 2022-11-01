@@ -8,11 +8,11 @@
 
 const express = require("express");
 const router = express.Router();
-// const passport = require("passport-http-bearer")
+const passport = require("passport-http-bearer")
 
 const db = require("../db.js");
 
-router.get('/user/signup', async (req, res) => {
+router.post('/user/signup', async (req, res) => {
   let user = {};
   user.email = req.body.email
   user.password = req.body.password
@@ -30,7 +30,8 @@ router.get('/user/signup', async (req, res) => {
   }
 })
 
-router.get('/user/login', async (req, res) => {
+router.post('/user/login', async (req, res) => {
+  console.log(req.body)
   let user = {}
   user.email = req.body.email
   user.password = req.body.password
@@ -43,73 +44,67 @@ router.get('/user/login', async (req, res) => {
     })
   } catch (e) {
     console.log("Error", e);
-    res.status(400).send({ err: e });
+    res.status(200).send({
+      val: -1,
+      comment: e
+
+    });
   }
 })
 
-router.get('/item/create', async (req, res) => {
-
+router.post('/item/create', async (req, res) => {
+  let title = req.body.title
+  let type = req.body.type
+  let email = req.body.email
   try {
     let record = {}
-    record.title = req.body.title
-    record.type = req.body.type
-    record.email = req.body.email
+    record.title = title
+    record.type = type
+    record.email = email
     record.completed = false
     record.createTime = Date()
     record.deleted = false
-    record.comment = req.body.comment
-    await db.createItem(record);
+    const dbRes = await db.createItem(record);
+    console.log(dbRes)
     res.send({
       val: 1,
       comment: "create item success"
     })
   } catch (e) {
     console.log("Error", e);
-    res.status(400).send({ err: e });
+    res.status(200).send({
+      val: -1,
+      err: e
+    });
   }
 })
 
 // this api only changes the status of completion
-router.get('/item/update', async (req, res) => {
+router.post('/item/complete', async (req, res) => {
   let query = {}
   query.id = req.body._id
-  query.completed = req.body.completed
   console.log(query)
   try {
-    await db.updateItemCompletion(query);
+    const dbRes = await db.updateItemCompletion(query);
+    console.log(dbRes)
     res.send({
       val: 1,
-      comment: "update success"
+      comment: "update success",
+      completed: dbRes
     })
   } catch (e) {
     console.log("Error", e);
-    res.status(400).send({ err: e });
-  }
-})
-
-// this api only changes the comment of an item
-router.get('/item/updateComment', async (req, res) => {
-  let query = {}
-  query.id = req.body._id
-  query.newComment = req.body.newComment
-  console.log(query)
-  try {
-    await db.updateItemComment(query);
-    res.send({
-      val: 1,
-      comment: "update success"
-    })
-  } catch (e) {
-    console.log("Error", e);
-    res.status(400).send({ err: e });
+    res.status(200).send({
+      val: -1,
+      err: e
+    });
   }
 })
 
 router.get('/item/retrieve', async (req, res) => {
-  let email = req.body.email
-
+  let paraStr = req.url.split('?')[1]
+  let email = paraStr.split('=')[1]
   try {
-    console.log("db", db);
     let items = await db.getItemList(email)
     res.send({ items: items });
     // res.send({ items: items.filter((item) => { item.deleted == true }) });
@@ -120,7 +115,9 @@ router.get('/item/retrieve', async (req, res) => {
 })
 
 router.get('/item/delete', async (req, res) => {
-  let id = req.body._id
+  let paraStr = req.url.split('?')[1]
+  let id = paraStr.split('=')[1]
+  console.log('id in route', id);
   try {
     const dbRes = await db.deleteItem(id);
     res.send({
@@ -129,7 +126,33 @@ router.get('/item/delete', async (req, res) => {
     })
   } catch (e) {
     console.log("Error", e);
-    res.status(400).send({ err: e });
+    res.status(200).send({
+      val: -1,
+      err: e
+    });
+  }
+})
+
+// this api only updates item title
+router.post('/item/edit', async (req, res) => {
+  let query = {}
+  query.id = req.body._id
+  query.newTitle = req.body.newTitle
+  query.newComment = req.body.newComment
+  console.log(query)
+  try {
+    let dbRes = await db.editItemTitle(query);
+    res.send({
+      newTitle: query.newTitle,
+      val: 1,
+      comment: "update success",
+    })
+  } catch (e) {
+    console.log("Error", e);
+    res.status(200).send({
+      val: -1,
+      err: e
+    });
   }
 })
 

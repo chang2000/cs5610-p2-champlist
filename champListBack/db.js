@@ -22,9 +22,7 @@ function db() {
     let client;
     try {
       client = new MongoClient(url, { useUnifiedTopology: true });
-      console.log("Connecting to the db");
       await client.connect();
-      console.log("Connected!");
       const db = client.db(DB_NAME);
       const userCol = db.collection("user");
       let record = {};
@@ -34,7 +32,7 @@ function db() {
       const existance = await userCol.find({ email: `${record.email}` }).toArray()
       console.log(existance)
       if (existance.length > 0) {
-        throw "Already registered"
+        throw "User already registered"
       }
 
       console.log("Collection ready, insert ", record);
@@ -52,15 +50,13 @@ function db() {
     let client;
     try {
       client = new MongoClient(url, { useUnifiedTopology: true });
-      console.log("Connecting to the db");
       await client.connect();
-      console.log("Connected!");
       const db = client.db(DB_NAME);
       const userCol = db.collection("user");
       // to validate username and password
       const existance = await userCol.findOne({ email: `${user.email}` })
       if (existance == undefined) {
-        throw "no such user"
+        throw "No such user"
       }
       if (existance.password != user.password) {
         throw "wrong password"
@@ -98,16 +94,21 @@ function db() {
     let client;
     try {
       client = new MongoClient(url, { useUnifiedTopology: true });
-      console.log("Connecting to the db");
       await client.connect();
-      console.log("Connected!");
       const db = client.db(DB_NAME);
       const itemCol = db.collection("item");
-      console.log(userEmail)
-      const items = await itemCol.find({ email: `${userEmail}` }).toArray();
-      console.log("Got files", items);
-      return items;
-
+      let query = {}
+      query.email = userEmail
+      console.log(query)
+      const items = await itemCol.find(query).toArray();
+      let filtered = []
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].deleted == false) {
+          filtered.push(items[i])
+        }
+      }
+      console.log("Got files", filtered);
+      return filtered;
     } catch {
       console.log("Failed, Closing the connection");
       client.close();
@@ -121,24 +122,15 @@ function db() {
       await client.connect();
       const db = client.db(DB_NAME);
       const itemCol = db.collection("item");
-      let items = await itemCol.findOneAndUpdate({ _id: ObjectId(`${query.id}`) }, { $set: { completed: `${query.completed}` } })
-      return items;
-
-    } catch {
-      console.log("Failed, Closing the connection");
-      client.close();
-    }
-  };
-
-  mydb.updateItemComment = async (query) => {
-    let client;
-    try {
-      client = new MongoClient(url, { useUnifiedTopology: true });
-      await client.connect();
-      const db = client.db(DB_NAME);
-      const itemCol = db.collection("item");
-      let items = await itemCol.findOneAndUpdate({ _id: ObjectId(`${query.id}`) }, { $set: { comment: `${query.newComment}` } })
-      return items;
+      let currItem = await itemCol.findOne({ _id: ObjectId(`${query.id}`) })
+      let target = false
+      if (currItem.completed == true) {
+        target = false
+      } else if (currItem.completed == false) {
+        target = true
+      }
+      let items = await itemCol.findOneAndUpdate({ _id: ObjectId(`${query.id}`) }, { $set: { completed: target } })
+      return target;
 
     } catch {
       console.log("Failed, Closing the connection");
@@ -148,6 +140,7 @@ function db() {
 
   // Logical delete
   mydb.deleteItem = async (id) => {
+    console.log('id in db', id)
     let client;
     try {
       client = new MongoClient(url, { useUnifiedTopology: true });
@@ -155,15 +148,30 @@ function db() {
       const db = client.db(DB_NAME);
       const itemCol = db.collection("item");
       const items = await itemCol.findOneAndUpdate({ _id: ObjectId(`${id}`) }, { $set: { deleted: true } })
-      console.log("res", items);
+      console.log("delete res", items);
       return items;
 
     } catch {
-      console.log("DB Failed, Closing the connection");
+      throw "DB Failed, Closing the connection";
+    } finally {
       client.close();
     }
   };
 
+  mydb.editItemTitle = async (query) => {
+    let client;
+    try {
+      client = new MongoClient(url, { useUnifiedTopology: true });
+      await client.connect();
+      const db = client.db(DB_NAME);
+      const itemCol = db.collection("item");
+      let items = await itemCol.findOneAndUpdate({ _id: ObjectId(`${query.id}`) }, { $set: { title: `${query.newTitle}` } })
+      return items;
+    } catch {
+      console.log("Failed, Closing the connection");
+      client.close();
+    }
+  }
   return mydb;
 }
 
