@@ -133,4 +133,13 @@ const deleteItem = async (itemId) => {
   }
 };
 
+function logOut() {
+  let logoutComfirm = confirm(`Do you want to log out?`);
+  if (logoutComfirm) {
+    window.localStorage.removeItem("email");
+    window.location.replace("../")
+  }
+  
+}
+
 getItemList();

@@ -10,7 +10,7 @@ const express = require("express");
 var bodyParser = require("body-parser");
 var cors = require("cors");
 const app = express();
-const port = 5000;
+const port = 5050;
 // frontend hosting
 app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json

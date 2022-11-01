@@ -26,23 +26,17 @@ Author: Guoqin Sun
 
       <!--Alert-->
       <div
-        class="alert alert-danger alert-dismissible fade show"
+        class="alert alert-danger"
         role="alert"
         id="createUserMsg"
         style="display: none"
       >
         <span id="contentUser">User already exists</span>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="alert"
-          aria-label="Close"
-        ></button>
+        
       </div>
 
       <div class="text-center mt-4 name">Create New User</div>
       <!-- Login Form here -->
-      <!-- <form action="/createUser" method="POST" class="p-3 mt-3"> -->
       <form
         action="javascript:;"
         onsubmit="createUser(this)"
