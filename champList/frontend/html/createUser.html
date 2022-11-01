@@ -16,7 +16,7 @@
   <body>
     <div class="wrapper">
       <div class="text">
-        <a href="../index.html">&lt; back</a>
+        <a href="../">&lt; back</a>
       </div>
 
       <!--Alert-->
@@ -37,7 +37,13 @@
 
       <div class="text-center mt-4 name">Create New User</div>
       <!-- Login Form here -->
-      <form action="/createUser" method="POST" class="p-3 mt-3">
+      <!-- <form action="/createUser" method="POST" class="p-3 mt-3"> -->
+      <form
+        action="javascript:;"
+        onsubmit="createUser(this)"
+        method="post"
+        class="p-3 mt-3"
+      >
         <div class="form-field d-flex align-items-center">
           <span class="far fa-user"></span>
           <input
@@ -59,9 +65,6 @@
           />
         </div>
         <button class="btn mt-3">Create new account</button>
-        <button class="btn mt-3" onclick="location.href='mainList.html'">
-          test
-        </button>
       </form>
     </div>
 
@@ -71,6 +74,7 @@
       crossorigin="anonymous"
     ></script>
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="../js/client.js"></script>
   </body>
 </html>

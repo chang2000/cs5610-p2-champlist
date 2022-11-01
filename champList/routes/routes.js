@@ -2,6 +2,8 @@ import express from "express";
 
 export const PORT = process.env.PORT || 3000;
 
+// import { getEmail } from "../frontend/js/getEmail.js";
+
 import myDB from "../db/MyMongoDB.js";
 
 const router = express.Router()
@@ -18,6 +20,11 @@ router.post("/login", async (req, res) => {
     if (await myDB.authenticate(user)) {
         // res.redirect("/?msg=authenticated");
         console.log("authenticated");
+        //pass users to main list page
+        // getEmail(user.email);
+        localStorage
+        
+
         res.redirect("./html/mainList.html")
     } else {
         console.log("not authenticated");
@@ -32,7 +39,7 @@ router.post("/createUser", async (req, res) => {
     console.log("POST createUser", user);
     console.log("login", email, password);
 
-    // //TODO check if info is correct
+    // check if info is correct
     
     if (await myDB.createUser(user)) {
         //add some hint for successfully created user

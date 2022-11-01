@@ -32,19 +32,11 @@
               <label class="text-secondary my-2 pr-2 view-opt-label"
                 >Type:
               </label>
-              <select class="custom-select custom-select-sm btn my-2">
-                <option value="urgent-important" selected>
-                  Urgent and Important
-                </option>
-                <option value="urgent-not-important">
-                  Urgent and not Important
-                </option>
-                <option value="not-urgent-important">
-                  Not Urgent and Important
-                </option>
-                <option value="not-urgent-not-important">
-                  Not Urgent and not Important
-                </option>
+              <select id="type-select" class="custom-select custom-select-sm btn my-2">
+                <option value="0" selected>Urgent and Important</option>
+                <option value="1">Urgent and not Important</option>
+                <option value="2">Not Urgent and Important</option>
+                <option value="3">Not Urgent and not Important</option>
               </select>
             </div>
             <div class="col-auto px-0 mx-0 mr-2">
@@ -80,98 +72,85 @@
       <!-- Todo list section -->
       <div class="row mx-1 px-5 pb-3 w-80">
         <div class="col mx-auto">
-            <ul class="list-group" id="todoList1">
-                
-            </ul>
-          
-          
+          <ul class="list-group" id="todoList1"></ul>
         </div>
       </div>
     </div>
 
     <div class="container m-5 p-2 rounded mx-auto bg-light shadow">
-        <!-- App title section -->
-        <div class="row m-1 p-4">
-          <div class="col">
-            <div
-              class="p-1 h1 text-primary text-center mx-auto display-inline-block"
-            >
-              <i class="fa fa-check bg-primary text-white rounded p-2"></i>
-              <u>Urgent and not Important</u>
-            </div>
-          </div>
-        </div>
-  
-        <div class="p-2 mx-4 border-black-25 border-bottom"></div>
-        <!-- View options section -->
-  
-        <!-- Todo list section -->
-        <div class="row mx-1 px-5 pb-3 w-80">
-          <div class="col mx-auto">
-              <ul class="list-group" id="todoList2">
-            </ul>
-            
+      <!-- App title section -->
+      <div class="row m-1 p-4">
+        <div class="col">
+          <div
+            class="p-1 h1 text-primary text-center mx-auto display-inline-block"
+          >
+            <i class="fa fa-check bg-primary text-white rounded p-2"></i>
+            <u>Urgent and not Important</u>
           </div>
         </div>
       </div>
 
-      <div class="container m-5 p-2 rounded mx-auto bg-light shadow">
-        <!-- App title section -->
-        <div class="row m-1 p-4">
-          <div class="col">
-            <div
-              class="p-1 h1 text-primary text-center mx-auto display-inline-block"
-            >
-              <i class="fa fa-check bg-primary text-white rounded p-2"></i>
-              <u>Not Urgent and Important</u>
-            </div>
-          </div>
-        </div>
-  
-        <div class="p-2 mx-4 border-black-25 border-bottom"></div>
-        <!-- View options section -->
-  
-        <!-- Todo list section -->
-        <div class="row mx-1 px-5 pb-3 w-80">
-          <div class="col mx-auto">
-              <ul class="list-group" id="todoList3">
+      <div class="p-2 mx-4 border-black-25 border-bottom"></div>
+      <!-- View options section -->
 
-              </ul>
-            
+      <!-- Todo list section -->
+      <div class="row mx-1 px-5 pb-3 w-80">
+        <div class="col mx-auto">
+          <ul class="list-group" id="todoList2"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container m-5 p-2 rounded mx-auto bg-light shadow">
+      <!-- App title section -->
+      <div class="row m-1 p-4">
+        <div class="col">
+          <div
+            class="p-1 h1 text-primary text-center mx-auto display-inline-block"
+          >
+            <i class="fa fa-check bg-primary text-white rounded p-2"></i>
+            <u>Not Urgent and Important</u>
           </div>
         </div>
       </div>
 
-      <div class="container m-5 p-2 rounded mx-auto bg-light shadow">
-        <!-- App title section -->
-        <div class="row m-1 p-4">
-          <div class="col">
-            <div
-              class="p-1 h1 text-primary text-center mx-auto display-inline-block"
-            >
-              <i class="fa fa-check bg-primary text-white rounded p-2"></i>
-              <u>Not Urgent and not Important</u>
-            </div>
-          </div>
+      <div class="p-2 mx-4 border-black-25 border-bottom"></div>
+      <!-- View options section -->
+
+      <!-- Todo list section -->
+      <div class="row mx-1 px-5 pb-3 w-80">
+        <div class="col mx-auto">
+          <ul class="list-group" id="todoList3"></ul>
         </div>
-  
-        <div class="p-2 mx-4 border-black-25 border-bottom"></div>
-        <!-- View options section -->
-  
-        <!-- Todo list section -->
-        <div class="row mx-1 px-5 pb-3 w-80">
-          <div class="col mx-auto">
-              <ul class="list-group" id="todoList4">
-            </ul>
-            
-            
+      </div>
+    </div>
+
+    <div class="container m-5 p-2 rounded mx-auto bg-light shadow">
+      <!-- App title section -->
+      <div class="row m-1 p-4">
+        <div class="col">
+          <div
+            class="p-1 h1 text-primary text-center mx-auto display-inline-block"
+          >
+            <i class="fa fa-check bg-primary text-white rounded p-2"></i>
+            <u>Not Urgent and not Important</u>
           </div>
         </div>
       </div>
+
+      <div class="p-2 mx-4 border-black-25 border-bottom"></div>
+      <!-- View options section -->
+
+      <!-- Todo list section -->
+      <div class="row mx-1 px-5 pb-3 w-80">
+        <div class="col mx-auto">
+          <ul class="list-group" id="todoList4"></ul>
+        </div>
+      </div>
+    </div>
 
     <div class="list-grid">
-      
-        <div class="box box1"><div>one</div></div>
+      <div class="box box1"><div>one</div></div>
       <div class="box box2"><div>two</div></div>
       <div class="box box3"><div>three</div></div>
       <div class="box box4"><div>four</div></div>
@@ -182,6 +161,7 @@
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="../js/mainList.js"></script>
   </body>
 </html>
