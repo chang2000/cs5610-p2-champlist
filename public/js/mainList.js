@@ -108,18 +108,20 @@ async function done(itemId, ifChecked) {
 async function editList(listId) {
   let currentText = document.getElementById(listId);
   let newText = prompt("Wanna Change list?");
+  if (newText) {
 
-  currentText.innerText = newText;
+    currentText.innerText = newText;
+    axios
+      .post("http://134.209.68.221:5000/item/edit", {
+        _id: listId,
+        newTitle: newText,
+      })
+      .then((res) => {
+        console.log(res.data);
+        window.location.reload();
+      });
+  }
 
-  axios
-    .post("http://134.209.68.221:5000/item/edit", {
-      _id: listId,
-      newTitle: newText,
-    })
-    .then((res) => {
-      console.log(res.data);
-      window.location.reload();
-    });
 }
 
 const deleteItem = async (itemId) => {
