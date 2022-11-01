@@ -4,9 +4,11 @@ Created by Tianchang Wang & Guoqin Sun
 
 Course Link: https://johnguerra.co/classes/webDevelopment_fall_2022/
 
-Video Presentaton Link:
+Video Presentaton Link: https://www.youtube.com/watch?v=EeHddwvjDws
 
 Slides Link: https://docs.google.com/presentation/d/1pyadkUvMDRdbhuW4VdrL9WlxBsn0V5m09Vo6PMc_RUo/edit?usp=sharing
+
+The design document is avaialble at [here](./design-document.md).
 
 ## Project Objective
 
