@@ -4,9 +4,9 @@ Created by Tianchang Wang & Guoqin Sun
 
 Course Link: https://johnguerra.co/classes/webDevelopment_fall_2022/
 
-Video Link:
+Video Presentaton Link:
 
-Slides Link:
+Slides Link: https://docs.google.com/presentation/d/1pyadkUvMDRdbhuW4VdrL9WlxBsn0V5m09Vo6PMc_RUo/edit?usp=sharing
 
 ## Project Objective
 
@@ -18,8 +18,20 @@ Slides Link:
 ## Screenshot 
 
 **Login**
+![login](./document-imgs/login.gif)
 
-![]()
+**Create Item**
+![create](./document-imgs/create.gif)
+
+**Edit Item Title**
+![edit](./document-imgs/edit.gif)
+
+**Delete Item**
+![edit](./document-imgs/delete.gif)
+
+**Logout**
+![edit](./document-imgs/logout.gif)
+
 
 ## Pre-requiste
 

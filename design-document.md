@@ -24,4 +24,4 @@
 
 ## Mock Up
 
-![mockup](/Users/alex/Desktop/mockup.png)
+![mockup](./document-imgs/mockup.png)
