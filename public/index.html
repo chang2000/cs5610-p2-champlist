@@ -26,19 +26,23 @@ Author: Guoqin Sun
     <!--Alert-->
     <div class="wrapper">
       <div
-        class="alert alert-danger alert-dismissible fade show"
+        class="alert alert-danger fade show"
         role="alert"
         id="messages"
         style="display: none"
       >
-        <span id="content">Wrong email or password</span>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="alert"
-          aria-label="Close"
-        ></button>
+        <span>Wrong email or password</span>
       </div>
+
+      <div
+        class="alert alert-success fade show"
+        role="alert"
+        id="newUserMsg"
+        style="display: none"
+      >
+        <span>New account created!</span>
+      </div>
+
       <div class="logo">
         <img src="./assets/img/icon.png" alt="" />
       </div>
@@ -73,7 +77,7 @@ Author: Guoqin Sun
         <button class="btn mt-3">Login</button>
       </form>
       <div class="text-center fs-6">
-        <a href="./html/todolist1.html">Forget password?</a> or
+        New user?
         <a href="./html/createUser.html">Sign up</a>
       </div>
     </div>

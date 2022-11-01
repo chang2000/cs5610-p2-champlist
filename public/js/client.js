@@ -3,44 +3,10 @@
  * Author: Guoqin Sun
  *
  */
-function MyClientModule() {
-  const msgDiv = document.querySelector("div#messages");
-  //   const msgDivUser = document.querySelector("div#createUserMsg");
 
-  function checkForErrors() {
-    const params = new Proxy(new URLSearchParams(window.location.search), {
-      get: (searchParams, prop) => searchParams.get(prop),
-    });
 
-    console.log("error urlParams", params.msg);
-    console.log("div user", msgDiv);
-    // console.log("msg div user", msgDivUser);
 
-    if (params.msg && params.msg == "notauthenticated") {
-      console.log("here in not", params.msg);
-      msgDiv.querySelector("#content").innerHTML = "Wrong email or password";
-      msgDiv.style.display = "block";
-    }
-
-    if (params.msg && params.msg == "usercreated") {
-      // console.log("here in not", params.msg);
-      msgDiv.querySelector("#content").innerHTML = "User created";
-      msgDiv.style.display = "block";
-      //   msgDiv.class = "alert alert-success";
-    }
-
-    // if (params.msgCreate && params.msgCreate == "userexists") {
-    //     // msgDivUser.querySelector("#contentUser").innerHTML = "user here";
-    //     msgDivUser.style.display = "block";
-    //   }
-  }
-
-  checkForErrors();
-}
-
-MyClientModule();
-
-const login = (e) => {
+const login = () => {
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
 
@@ -62,10 +28,12 @@ const login = (e) => {
         window.location = currentURL + "./html/mainList.html";
       } else {
         console.log("login failed");
+        document.getElementById("messages").style.display = "block";
         console.log(res.data.comment);
       }
     })
     .catch((e) => {
+      
       console.log(e);
     });
 };
@@ -73,6 +41,8 @@ const login = (e) => {
 const createUser = (e) => {
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
+
+  
 
   console.log(email, password);
 
@@ -84,20 +54,38 @@ const createUser = (e) => {
     .then((res) => {
       console.log(res.data);
       let loginVal = res.data.val;
-      // if (loginVal == 1) {
-      //     console.log('login success')
-      //     // set localstorage
-      //     window.localStorage.setItem('email', email)
-      //     // redirect to mainlist
-      //     let currentURL = window.location
-      //     console.log(currentURL);
-      //     window.location = currentURL + "./html/mainList.html"
-      // } else {
-      //     console.log('login failed')
-      //     console.log(res.data.comment)
-      // }
+      if (loginVal == 1) {
+          console.log('created success')
+          window.location.replace("../");
+          
+          window.localStorage.setItem('newly-created', true)
+          let ele = document.getElementById("newUserMsg")
+          console.log(ele)
+          document.getElementById("newUserMsg").style.display = "block";
+          //alert: user already registered
+          
+      } else {
+          console.log('created failed')
+          document.getElementById("createUserMsg").style.display = "block";
+          console.log(res.data.err)
+      }
     })
     .catch((e) => {
       console.log(e);
     });
 };
+
+const displayInfomation = () => {
+  // 1. get storage value
+  let ifNewUser = window.localStorage.getItem('newly-created')
+  if (ifNewUser) {
+    let ele = document.getElementById("newUserMsg")
+    if (ele) {
+      document.getElementById("newUserMsg").style.display = "block";
+    }
+    window.localStorage.removeItem('newly-created')
+
+  }
+}
+
+displayInfomation()
