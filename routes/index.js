@@ -17,14 +17,14 @@ router.post("/user/signup", async (req, res) => {
   user.password = req.body.password;
   try {
     const dbRes = await db.createUser(user);
-    console.log(dbRes);
+    // console.log(dbRes);
     res.send({
       val: 1,
       comment: "signup success",
     });
     // res.redirect("/");
   } catch (e) {
-    console.log("Error", e);
+    // console.log("Error", e);
     res.status(200).send({
       val: -1,
       err: e,
@@ -33,20 +33,20 @@ router.post("/user/signup", async (req, res) => {
 });
 
 router.post("/user/login", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   let user = {};
   user.email = req.body.email;
   user.password = req.body.password;
 
   try {
     const dbRes = await db.userLogin(user);
-    console.log(dbRes);
+    // console.log(dbRes);
     res.send({
       val: 1,
       comment: "login success",
     });
   } catch (e) {
-    console.log("Error", e);
+    // console.log("Error", e);
     res.status(200).send({
       val: -1,
       comment: e,
@@ -67,13 +67,13 @@ router.post("/item/create", async (req, res) => {
     record.createTime = Date();
     record.deleted = false;
     const dbRes = await db.createItem(record);
-    console.log(dbRes);
+    // console.log(dbRes);
     res.send({
       val: 1,
       comment: "create item success",
     });
   } catch (e) {
-    console.log("Error", e);
+    // console.log("Error", e);
     res.status(200).send({
       val: -1,
       err: e,
@@ -85,17 +85,17 @@ router.post("/item/create", async (req, res) => {
 router.post("/item/complete", async (req, res) => {
   let query = {};
   query.id = req.body._id;
-  console.log(query);
+  // console.log(query);
   try {
     const dbRes = await db.updateItemCompletion(query);
-    console.log(dbRes);
+    // console.log(dbRes);
     res.send({
       val: 1,
       comment: "update success",
       completed: dbRes,
     });
   } catch (e) {
-    console.log("Error", e);
+    // console.log("Error", e);
     res.status(200).send({
       val: -1,
       err: e,
@@ -111,7 +111,7 @@ router.get("/item/retrieve", async (req, res) => {
     res.send({ items: items });
     // res.send({ items: items.filter((item) => { item.deleted == true }) });
   } catch (e) {
-    console.log("Error", e);
+    // console.log("Error", e);
     res.status(400).send({ err: e });
   }
 });
@@ -119,16 +119,16 @@ router.get("/item/retrieve", async (req, res) => {
 router.get("/item/delete", async (req, res) => {
   let paraStr = req.url.split("?")[1];
   let id = paraStr.split("=")[1];
-  console.log("id in route", id);
+  // console.log("id in route", id);
   try {
     const dbRes = await db.deleteItem(id);
-    console.log(dbRes);
+    // console.log(dbRes);
     res.send({
       val: 1,
       comment: "delete success",
     });
   } catch (e) {
-    console.log("Error", e);
+    // console.log("Error", e);
     res.status(200).send({
       val: -1,
       err: e,
@@ -142,17 +142,17 @@ router.post("/item/edit", async (req, res) => {
   query.id = req.body._id;
   query.newTitle = req.body.newTitle;
   query.newComment = req.body.newComment;
-  console.log(query);
+  // console.log(query);
   try {
     let dbRes = await db.editItemTitle(query);
-    console.log(dbRes);
+    // console.log(dbRes);
     res.send({
       newTitle: query.newTitle,
       val: 1,
       comment: "update success",
     });
   } catch (e) {
-    console.log("Error", e);
+    // console.log("Error", e);
     res.status(200).send({
       val: -1,
       err: e,

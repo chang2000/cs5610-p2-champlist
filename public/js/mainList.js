@@ -24,16 +24,16 @@ let email = window.localStorage.getItem("email");
 
 const getItemList = async () => {
   let ifChecked = "";
-  console.log("email", email);
+  // console.log("email", email);
   let curEmail = document.getElementById("curAccount");
   curEmail.innerText = email;
-  console.log("current email:", curEmail.innerText);
+  // console.log("current email:", curEmail.innerText);
 
   axios
     .get(`http://134.209.68.221:5000/item/retrieve?email=${email}`)
     .then((res) => {
-      console.log(res.data.items);
-      console.log(res.data.items.length);
+      // console.log(res.data.items);
+      // console.log(res.data.items.length);
       //todo: checkbox update after comment
       for (let i = 0; i < res.data.items.length; i++) {
         let curItem = res.data.items[i];
@@ -48,7 +48,7 @@ const getItemList = async () => {
           curItem.type
         ].innerHTML += ` <li class="col px-1 mx-0 d-flex align-items-center" id="${curItem._id}">
         <div class="col px-1 m-2 d-flex align-items-center">
-        <input class="" type="checkbox" id="listCheck${curItem._id}" ${ifChecked} onclick="done('${curItem._id}', '${ifChecked}')">
+        <input class="" type="checkbox" id="listCheck${curItem._id}" ${ifChecked} onclick="complete('${curItem._id}', '${ifChecked}')">
             
             <div class="col-6">
                 <span class="form-control form-control-lg border-0  bg-transparent  px-3 " id="listText${curItem._id}"> ${curItem.title} </span>
@@ -68,7 +68,7 @@ const getItemList = async () => {
 
 async function addTodoList() {
   let type = document.getElementById("type-select");
-  console.log(type.value);
+  // console.log(type.value);
 
   let inputText = todoItem.value.trim();
 
@@ -80,7 +80,7 @@ async function addTodoList() {
         email: email,
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         window.location.reload();
       });
 
@@ -89,25 +89,25 @@ async function addTodoList() {
   }
 }
 
-async function done(itemId, ifChecked) {
+async function complete(itemId, ifChecked) {
   let checkbox = document.getElementById(`listCheck${itemId}`);
   let current = document.getElementById(itemId);
 
-  console.log("curr box checked", checkbox);
-  console.log("checked ", ifChecked);
+  // console.log("curr box checked", checkbox);
+  // console.log("checked ", ifChecked);
 
   axios
     .post("http://134.209.68.221:5000/item/complete", {
       _id: itemId,
     })
     .then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
     });
 }
 
 async function editList(listId) {
   let currentText = document.getElementById(listId);
-  let newText = prompt("Wanna Change list?");
+  let newText = prompt("Type your new todo item:");
   if (newText) {
 
     currentText.innerText = newText;
@@ -117,7 +117,7 @@ async function editList(listId) {
         newTitle: newText,
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         window.location.reload();
       });
   }
@@ -125,12 +125,12 @@ async function editList(listId) {
 }
 
 const deleteItem = async (itemId) => {
-  let deleteComfirm = confirm("Are you sure to delete");
+  let deleteComfirm = confirm("Do you want to delete this item?");
   if (deleteComfirm) {
     axios
       .get(`http://134.209.68.221:5000/item/delete?id=${itemId}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         window.location.reload();
       });
   }
