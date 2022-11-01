@@ -8,7 +8,6 @@
 
 const express = require("express");
 const router = express.Router();
-const passport = require("passport-http-bearer")
 
 const db = require("../db.js");
 
@@ -26,7 +25,10 @@ router.post('/user/signup', async (req, res) => {
     // res.redirect("/");
   } catch (e) {
     console.log("Error", e);
-    res.status(400).send({ err: e });
+    res.status(200).send({
+      val: -1,
+      err: e
+    });
   }
 })
 
