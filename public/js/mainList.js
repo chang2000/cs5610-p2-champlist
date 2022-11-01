@@ -1,7 +1,7 @@
 /*
  *
  * Author: Guoqin Sun
- * 
+ *
  */
 
 let todoItem = document.getElementById("newTask");
@@ -121,14 +121,12 @@ const deleteItem = async (itemId) => {
   let deleteComfirm = confirm(`Are you sure to delete`);
   if (deleteComfirm) {
     axios
-    .get(`http://134.209.68.221:5000/item/delete?id=${itemId}`)
-    .then((res) => {
-      console.log(res.data);
-      window.location.reload();
-    });
-  } 
-
-  
+      .get(`http://134.209.68.221:5000/item/delete?id=${itemId}`)
+      .then((res) => {
+        console.log(res.data);
+        window.location.reload();
+      });
+  }
 };
 
 getItemList();

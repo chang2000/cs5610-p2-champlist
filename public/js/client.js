@@ -1,7 +1,7 @@
 /*
  *
  * Author: Guoqin Sun
- * 
+ *
  */
 function MyClientModule() {
   const msgDiv = document.querySelector("div#messages");
@@ -74,7 +74,7 @@ const createUser = (e) => {
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
 
-    console.log(email, password)
+  console.log(email, password);
 
   axios
     .post("http://134.209.68.221:5000/user/signup", {
