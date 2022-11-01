@@ -3,7 +3,7 @@ let list1 = document.getElementById("todoList1");
 
 let itemCount = 0;
 
-function addTodoList() {
+async function addTodoList() {
   let inputText = todoItem.value.trim();
 
   if (inputText) {
@@ -26,6 +26,17 @@ function addTodoList() {
                         </li>`;
     todoItem.value = " ";
     itemCount++;
+
+    axios.get("http://134.209.68.221:5000/item/create", {
+        params: {
+            title: inputText,
+            type: 0, // 0, 1, 2, 3
+            email: "sungrqin@gmail.com"
+        }
+    })
+    .then(res=>{
+        console.log(res.data.title)
+    })
   }
 }
 

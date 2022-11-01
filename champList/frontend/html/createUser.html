@@ -18,15 +18,33 @@
       <div class="text">
         <a href="../index.html">&lt; back</a>
       </div>
+
+      <!--Alert-->
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        role="alert"
+        id="createUserMsg"
+        style="display: none"
+      >
+        <span id="contentUser">User already exists</span>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+
       <div class="text-center mt-4 name">Create New User</div>
-      <form class="p-3 mt-3">
+      <!-- Login Form here -->
+      <form action="/createUser" method="POST" class="p-3 mt-3">
         <div class="form-field d-flex align-items-center">
           <span class="far fa-user"></span>
           <input
             type="text"
-            name="userName"
-            id="userName"
-            placeholder="Username"
+            name="email"
+            id="email"
+            placeholder="Email"
             required="true"
           />
         </div>
@@ -35,17 +53,15 @@
           <input
             type="password"
             name="password"
-            id="pwd"
+            id="password"
             placeholder="Password"
             required="true"
           />
         </div>
-        <button class="btn mt-3" >
-          Create new account
-        </button>
+        <button class="btn mt-3">Create new account</button>
         <button class="btn mt-3" onclick="location.href='mainList.html'">
-            test
-          </button>
+          test
+        </button>
       </form>
     </div>
 
@@ -54,5 +70,7 @@
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
       crossorigin="anonymous"
     ></script>
+
+    <script src="../js/client.js"></script>
   </body>
 </html>

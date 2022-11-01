@@ -14,23 +14,37 @@
     <link rel="stylesheet" href="./css/login.css" />
   </head>
   <body>
-    <!-- <h1>Here</h1> -->
     <div class="text-center mt-4 name" id="title">
       <h2>Welcome to the ChampList!</h2>
     </div>
-
+    <!--Alert-->
     <div class="wrapper">
+      <div
+      class="alert alert-danger alert-dismissible fade show "
+      role="alert"
+      id="messages"
+      style="display: none;"
+    >
+      <span id="content">Wrong email or password</span>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
       <div class="logo">
         <img src="./src/img/icon.png" alt="" />
       </div>
       <div class="text-center mt-4 name">ChampList</div>
+      <!--Login Form here-->
       <form action="/login" method="post" class="p-3 mt-3">
         <div class="form-field d-flex align-items-center">
           <span class="far fa-user"></span>
           <input
             type="text"
-            name="userName"
-            id="userName"
+            name="email"
+            id="email"
             placeholder="Username"
             required="true"
           />
@@ -40,7 +54,7 @@
           <input
             type="password"
             name="password"
-            id="pwd"
+            id="password"
             placeholder="Password"
             required="true"
           />
@@ -58,5 +72,7 @@
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
       crossorigin="anonymous"
     ></script>
+
+    <script src="./js/client.js"></script>
   </body>
 </html>
