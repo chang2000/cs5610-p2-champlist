@@ -18,6 +18,7 @@ listArray.push(list4);
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 let itemCount = 0;
+//I'd suggest setting it as an environment variable instead, so no one can see it
 const apiUrl = "http://134.209.68.221:5000";
 let email = window.localStorage.getItem("email");
 // get all items from current use
