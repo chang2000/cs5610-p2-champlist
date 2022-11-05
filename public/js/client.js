@@ -9,6 +9,7 @@ const login = () => {
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
 
+  // Nice! I didn't know axios could be used to send GET/POST in such a chained call before.
   axios
     .post("http://134.209.68.221:5000/user/login", {
       email: email,
