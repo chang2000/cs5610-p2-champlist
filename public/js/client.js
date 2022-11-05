@@ -53,6 +53,8 @@ const createUser = (e) => {
       if (loginVal == 1) {
         // console.log("created success");
         window.location.replace("../");
+        //I like the style of your login/signup page with all the features work prefectly.
+        //I'd expect it to navigate me to the home page or something, rather than redirecting me to the login page
 
         window.localStorage.setItem("newly-created", true);
         let ele = document.getElementById("newUserMsg");
