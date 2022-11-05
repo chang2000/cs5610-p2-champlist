@@ -16,6 +16,9 @@ function db() {
   console.log(url);
   const DB_NAME = "champlist";
 
+  // I would suggest to make these functions collection-agnostic so that 
+  // they can work for any collection within the database
+  // and you don't have to rewrite the same code.
   mydb.createUser = async (user) => {
     let client;
     try {
